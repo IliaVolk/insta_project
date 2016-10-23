@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {AppComponent} from "./app.component";
-import {OtherComponent} from "./other/other.component";
+import {AdminComponent} from "./admin/admin.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -15,9 +16,14 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'other',
-    component: OtherComponent
-  }
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: "not-found"
+  },
+
 ];
 
 @NgModule({
@@ -26,4 +32,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routedComponents = [AppComponent];

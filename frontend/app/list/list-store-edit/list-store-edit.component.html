@@ -1,0 +1,11 @@
+<h2>List '{{title}}'</h2>
+<div class="md-padding" layout="row" layout-wrap layout-align="center start">
+  <div flex="50" layout="column" flex-xs="100" class="md-list">
+      <edit-store-list-item *ngFor="let store of items; let index = index" [item]="items[index]">
+
+      </edit-store-list-item>
+
+  </div>
+</div>
+
+

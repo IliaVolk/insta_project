@@ -2,6 +2,9 @@ var gulp = require('gulp');
 var del = require('del');
 var $ = require('gulp-load-plugins')({ lazy: true });
 var lite = require('lite-server');
+var scss = require("gulp-scss");
+var scsslint = require('gulp-scss-lint');
+var count = require('gulp-count');
 
 var config = {
   build: './dist/build.js',
@@ -20,7 +23,7 @@ var config = {
 };
 
 gulp.task('help', $.taskListing);
-gulp.task('default', ['help']);
+gulp.task('default', ['help', 'scss']);
 
 gulp.task('gzip', function () {
   log('gzipping');
@@ -46,6 +49,16 @@ function copyIndex(source) {
     .pipe($.rename(config.index.run))
     .pipe(gulp.dest(config.root));
 }
+
+
+gulp.task("scss", function () {
+  return gulp.src("styles.scss")
+    .pipe(count())
+    .pipe(scss({}).on('error', function(){console.log(arguments)}))
+    .pipe(count()).pipe(gulp.dest("./styles.css"));
+});
+
+
 
 gulp.task('copy-jit', ['clean'], function () {
   log('copy jit');

@@ -1,0 +1,40 @@
+<md-card >
+  <a target="_blank" href="{{item.url}}">
+    <img src="{{item.imageUrl}}" alt="{{item.name}}">
+    <div>
+      <h2>
+        <span class="md-headline">{{item.name}}</span>
+      </h2>
+    </div>
+    <md-card-content>
+      <p>
+        {{item.description}}
+      </p>
+    </md-card-content>
+  </a>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-list class="horizontal">
+      <div *ngFor="let tag of item.tags">
+          <md-list-item class="md-2-line">
+            {{tag.name}}
+          </md-list-item>
+      </div>
+    </md-list>
+  </md-card-actions>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-list class="horizontal">
+      <md-list-item *ngIf="!item.isEditing" (click)="onEdit()" class="md-2-line">
+        Edit
+      </md-list-item>
+      <md-list-item *ngIf="item.isEditing" (click)="onConfirm()" class="md-2-line">
+        Confirm
+      </md-list-item>
+      <md-list-item *ngIf="item.isEditing" (click)="onCancel()" class="md-2-line">
+        Cancel
+      </md-list-item>
+      <md-list-item (click)="onDelete()">
+        Delete
+      </md-list-item>
+    </md-list>
+  </md-card-actions>
+</md-card>

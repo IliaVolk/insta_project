@@ -3,18 +3,30 @@ import { Component } from '@angular/core';
 @Component({
   moduleId: module.id,
   selector: 'my-app',
-  template: `
-    <h1>{{title}}</h1>
-    <div class="header-bar"></div>
-    <nav>
-      <a routerLink="/home" routerLinkActive="active">Home</a>
-      <a routerLink="/other" routerLinkActive="active">Other</a>
-
-    </nav>
-    <router-outlet></router-outlet>
-  `,
-  styleUrls: ['app.component.css']
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
+  directives: []
 })
 export class AppComponent {
   title = 'InstaApp';
+  user = {
+    title: 'Developer',
+    email: 'ipsum@lorem.com',
+    firstName: '',
+    lastName: '',
+    company: 'Google',
+    address: '1600 Amphitheatre Pkwy',
+    address2: '',
+    city: 'Mountain View',
+    state: 'CA',
+    biography:
+      'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
+    postalCode: '94043'
+  };
+  states = [
+    'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL',
+    'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT',
+    'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI',
+    'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+  ].map(function(state) { return {abbrev: state}; })
 }

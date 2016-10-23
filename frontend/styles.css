@@ -1,5 +1,27 @@
-h2 { color: #444; font-weight: lighter; }
-body { margin: 2em; }
-body, input[text], button { color: #888; font-family: Cambria, Georgia; }
-button { padding: 0.2em; font-size: 14px}
-* { font-family: Arial; }
+md-card img{
+  width: 100%;
+}
+
+.md-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.active {
+  color: darkgreen !important;
+  background-color: #eeeeee;
+}
+nav a{
+  display: flex;
+  padding: 0.5em 1.5em;
+}
+a{
+  color: black;
+}
+a:hover{
+  cursor: pointer;
+}
+.horizontal{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,17 @@
+@media (min-width: 1200px) {
+  md-card{
+    width: 33%;
+  }
+}
+@media (max-width: 1200px) and (min-width: 800px) {
+  md-card{
+    width: 50%;
+  }
+}
+@media (max-width: 800px) {
+  md-card{
+    width: 100%;
+  }
+}
+
+

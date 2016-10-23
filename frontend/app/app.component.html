@@ -1,0 +1,27 @@
+
+<md-sidenav-layout>
+  <md-sidenav class="sidenav" #left  [opened]="true" mode="side" layout-padding>
+    <nav>
+      <md-list>
+        <a routerLink="/home" routerLinkActive="active">
+          <md-list-item class="md-2-line">
+            Home
+          </md-list-item>
+        </a>
+        <a routerLink="/admin" routerLinkActive="active">
+          <md-list-item class="md-2-line">
+            Admin
+          </md-list-item>
+        </a>
+      </md-list>
+    </nav>
+
+  </md-sidenav>
+
+  <div class="padding">
+    <router-outlet></router-outlet>
+  </div>
+
+</md-sidenav-layout>
+
+
