@@ -1,9 +1,6 @@
 /* general */
 import React from 'react';
 import cookies from 'react-cookie';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import ReduxToastr from 'react-redux-toastr';
 import { browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

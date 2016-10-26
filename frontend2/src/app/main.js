@@ -1,7 +1,6 @@
 /* general */
 import 'babel-polyfill';
 import React from 'react';
-import thunk from "redux-thunk";
 import { render } from 'react-dom';
 import { createHistory } from 'history';
 
