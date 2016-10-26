@@ -20,7 +20,7 @@ export default class StoreComponent extends Component {
             return <Card>
                 <CardHeader
                     avatar={<StateIcon state={state}/>}
-                    title={<div className="cartHeaderTitle"><a target="_blank" href={url} >{name}</a></div>}
+                    title={<div className="marginLeft font150"><a target="_blank" href={url} >{name}</a></div>}
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
