@@ -9,6 +9,8 @@ src/main/webapp/resources/aot/*
 src/main/webapp/resources/dist/*
 target/*
 .idea/*
+
+frontend
 frontend/typings
 frontend/system-config.js*
 frontend/app/**/*.js
@@ -19,3 +21,4 @@ frontend/jspm_packages
 frontend/bower_components
 frontend/aot/*
 frontend/dist/*
+frontend2/node_modules
