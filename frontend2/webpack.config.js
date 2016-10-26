@@ -20,7 +20,7 @@ if (isProduction){
 module.exports = {
   devtool: isProduction?"":'eval-source-map',
   entry: [
-    //'webpack-hot-middleware/client?reload=true',
+    'webpack-hot-middleware/client?reload=true',
     path.join(__dirname, mainJsFileName)
   ],
   output: {

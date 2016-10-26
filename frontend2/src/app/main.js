@@ -9,13 +9,16 @@ import { createHistory } from 'history';
 import App from './App.js';
 import Home from '../components/home/Home';
 import Admin from '../components/admin/Admin'
-import Stores from '../components/admin/stores/Stores'
-import Tags from '../components/admin/tags/Tags'
-import Places from '../components/admin/places/Places'
+import StoresAdmin from '../components/admin/Stores'
+import TagsAdmin from '../components/admin/Tags'
+import PlacesAdmin from '../components/admin/Places'
+import StoresUser from '../components/user/Stores'
+import TagsUser from '../components/user/Tags'
+import PlacesUser from '../components/user/Places'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { IndexRoute, Route, Router, browserHistory, useRouterHistory, IndexRedirect } from 'react-router';
 
-
+import User from "./../components/user/User"
 const history = useRouterHistory(createHistory)({
     basename: '/'
 });
@@ -29,9 +32,15 @@ render(
                 <Route path="home" component={Home}/>
                 <Route path="admin" component={Admin}>
                     <IndexRedirect to="stores"/>
-                    <Route path="stores" component={Stores} />
-                    <Route path="tags" component={Tags} />
-                    <Route path="places" component={Places}/>
+                    <Route path="stores" component={StoresAdmin} />
+                    <Route path="tags" component={TagsAdmin} />
+                    <Route path="places" component={PlacesAdmin}/>
+                </Route>
+                <Route path="user" component={User}>
+                    <IndexRedirect to="stores"/>
+                    <Route path="stores" component={StoresUser} />
+                    <Route path="tags" component={TagsUser} />
+                    <Route path="places" component={PlacesUser}/>
                 </Route>
             </Route>    
         </Router>

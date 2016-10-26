@@ -5,6 +5,7 @@ export default class Component extends React.Component {
         super()
     }
     shouldComponentUpdate(){
+        console.log(this.model, this.props.model.shouldComponentUpdate)
         return this.props.model.shouldComponentUpdate
     }
     componentDidMount(){
@@ -12,5 +13,7 @@ export default class Component extends React.Component {
     }
     componentWillReceiveProps(props){
         props.model.component = this
+        props.model.shouldComponentUpdate = true
+        props.model.notifyUpdated()
     }
 }

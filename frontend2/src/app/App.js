@@ -44,7 +44,9 @@ export default class App extends React.Component {
             <div>
                 <AppBar
                     title={<Link to="/home"><span>Insta App</span></Link>}
-                    iconElementRight={<Link to="/admin"><FlatButton label="Admin" /></Link>}
+                    iconElementRight={<div>
+                    <Link to="/user"><FlatButton label="Offer Stuff"/></Link>
+                    <Link to="/admin"><FlatButton label="Admin" /></Link></div>}
                 />
                 {children}
             </div>

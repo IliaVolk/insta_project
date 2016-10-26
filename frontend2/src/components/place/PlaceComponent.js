@@ -2,9 +2,10 @@ import React from "react"
 import {PropTypes} from "react"
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import Component from "./../../Component"
-import EditingItemComponent from "./../EditingItemComponent"
-import CardActionsContent from "./../CardActions"
+import Component from "./../Component"
+import EditingItemComponent from "./../list/EditingItemComponent"
+import CardActionsContent from "./../list/CardActions"
+import StateIcon from "./../StateIcon"
 export default class PlaceComponent extends Component {
     constructor() {
         super()
@@ -18,12 +19,14 @@ export default class PlaceComponent extends Component {
         if (!isEditing)
         return <Card>
             <CardHeader
-                title={name}
+                avatar={<StateIcon state={state}/>}
+                title={<div className="font150 marginLeft">{name}</div>}
+                subtitle={<div className="marginLeft">{size} store(s)</div>}
                 actAsExpander={true}
                 showExpandableButton={true}
-            >State: {state}</CardHeader>
+            />
             <CardText expandable={true}>
-                {description} ({size})
+                {description}
             </CardText>
             <CardActions>
                 <CardActionsContent model={model}/>

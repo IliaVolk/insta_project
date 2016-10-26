@@ -1,4 +1,4 @@
-import ListItemModel from "./../ListItemModel"
+import ListItemModel from "./../list/ListItemModel"
 import TagComponent from "./TagComponent"
 
 export default class TagModel extends ListItemModel{

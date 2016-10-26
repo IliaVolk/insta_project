@@ -7,12 +7,12 @@ var getId = (function(){
     }
 })()
 export default props=>{
-    return <div style={{width: "100%"}} className="displayFlex" ><div className="displayFlex cols flexCenter" style={{width: "70%"}}>
-        {props.values.map((value, i)=><div style={{width: "100%"}}><TextField
+    return <div className="displayFlex width100" ><div className="displayFlex cols flexCenter" style={{width: "70%"}}>
+        {props.values.map((value, i)=><div className="width100"><TextField
             key={i}
             id={getId()}
             floatingLabelText={value.label}
-            value={value.value}
+            value={value.value || ""}
             onChange={(e)=>value.setter(e.target.value)}
             fullWidth={true}
         /></div>)}

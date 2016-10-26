@@ -14,7 +14,7 @@ export default class Model {
         this.cb = cb
         this.component && this.component.forceUpdate(this.notifyUpdatedCallback)
     }
-    getView(props){
-        return React.createElement(this.ComponentClass, Object.assign({model: this}, props))
+    getView(props, replace){
+        return React.createElement(this.ComponentClass, replace?props: Object.assign({model: this}, props))
     }
 }

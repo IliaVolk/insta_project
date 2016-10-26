@@ -26,7 +26,7 @@ export default class ListItemModel extends Model{
     confirm = () => {
         this.isEditing = false
         this.parent.update(this)
-            .then(this.notifyUpdated.bind(this))
+            .then(this.notifyUpdated())
     }
     cancel = () => {
         this.isEditing = false

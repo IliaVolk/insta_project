@@ -1,36 +1,35 @@
 import React from "react"
 import {PropTypes} from "react"
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import Component from "./../../Component"
-import EditingItemComponent from "./../EditingItemComponent"
-import CardActionsContent from "./../CardActions"
+import Component from "./../Component"
+import EditingItemComponent from "./../list/EditingItemComponent"
+import CardActionsContent from "./../list/CardActions"
+import StateIcon from "./../StateIcon"
 export default class StoreComponent extends Component {
     constructor() {
         super()
     }
-    shouldComponentUpdate(){
-        let model = this.props.model
-        let shup = model.shouldComponentUpdate
-        return super.shouldComponentUpdate()
-    }
+
     render() {
         let {model} = this.props
-        let {name, size, description, state, image, url} = model.value
+        let {name, description, state, image, url} = model.value
         let {isEditing, confirm, cancel,
             setName, setDescription, setImage, setUrl} = model
-        debugger
         if (!isEditing)
             return <Card>
                 <CardHeader
-                    avatar={image}
-                    title={name}
+                    avatar={<StateIcon state={state}/>}
+                    title={<div className="cartHeaderTitle"><a target="_blank" href={url} >{name}</a></div>}
                     actAsExpander={true}
                     showExpandableButton={true}
-                >State: {state} <a href={url}/></CardHeader>
-                <CardText expandable={true}>
-                    {description} ({size})
-                </CardText>
+                />
+                <CardMedia
+                    expandable={true}
+                    overlay={<CardTitle title={description}/>}
+                >
+                    <img src={image} />
+                </CardMedia>
                 <CardActions>
                     <CardActionsContent model={model}/>
                 </CardActions>

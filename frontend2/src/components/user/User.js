@@ -18,18 +18,13 @@ export default class Admin extends React.Component {
         super()
     }
 
-    static get propTypes() {
-        return {}
-    }
-
     render() {
         return (<div className="displayFlex">
             <Paper className="paper">
                 <Menu>
-                    <Link to="/admin/stores" activeClassName="activeLink"><MenuItem primaryText="Stores" leftIcon={<RemoveRedEye />} /></Link>
-                    <Link to="/admin/tags" activeClassName="activeLink"><MenuItem primaryText="Tags" leftIcon={<PersonAdd />} /></Link>
-                    <Link to="/admin/places" activeClassName="activeLink"><MenuItem primaryText="Places" leftIcon={<ContentLink />} /></Link>
-
+                    <Link to="/user/stores" activeClassName="activeLink"><MenuItem primaryText="Offer Stores" leftIcon={<RemoveRedEye />} /></Link>
+                    <Link to="/user/tags" activeClassName="activeLink"><MenuItem primaryText="Offer Tags" leftIcon={<PersonAdd />} /></Link>
+                    <Link to="/user/places" activeClassName="activeLink"><MenuItem primaryText="Offer Places" leftIcon={<ContentLink />} /></Link>
                 </Menu>
             </Paper>
             <div className="adminContent displayFlex flexCenter">

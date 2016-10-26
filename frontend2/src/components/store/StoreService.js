@@ -13,7 +13,7 @@ class StoreService {
             {
                 name: "place2",
                 image: "http://www.zooclub.ru/skat/img.php?w=700&h=700&img=./attach/12000/12669.jpg",
-                description: "desc1",
+                description: "desckjhkl hkljhlk hjklhlk h lkhlhlhkljhjhkl,lj lh lhljh kjhlh 1",
                 url: "http://www.zooclub.ru/skat/img.php?w=700&h=700&img=./attach/12000/12669.jpg"
             },
             {

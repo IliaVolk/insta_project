@@ -12,11 +12,15 @@ export default class GridListComponent extends Component {
         let {model} = this.props
         return <div className="list-container">
             <GridList
-                cellHeight={120}
+                cellHeight={150}
                 cols={2}
                 padding={10}>
                 {model.models.map((m,i)=>m.getView({key:i}))}
             </GridList>
+            <div className="displayFlex flexCenter width100">
+                <h1>Add New Item</h1>
+            </div>
+            {model.addItemModel.getView()}
         </div>
     }
 }

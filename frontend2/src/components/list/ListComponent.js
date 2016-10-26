@@ -10,6 +10,11 @@ export default class ListComponent extends Component {
         let {model} = this.props
         return <div className="list-container">
             {model.models.map((m,i)=>m.getView({key:i}))}
+            <div className="displayFlex flexCenter width100">
+                <h1>Add New Item</h1>
+            </div>
+
+            {model.addItemModel.getView()}
         </div>
     }
 }

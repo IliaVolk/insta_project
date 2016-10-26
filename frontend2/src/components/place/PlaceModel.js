@@ -1,4 +1,4 @@
-import ListItemModel from "./../ListItemModel"
+import ListItemModel from "./../list/ListItemModel"
 import PlaceComponent from "./PlaceComponent"
 export default class PlacesModel extends ListItemModel{
     constructor(params) {

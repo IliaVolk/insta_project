@@ -6,7 +6,7 @@ class PlaceService {
         return Promise.resolve([
             {name: "p2", size: 1},
             {name: "place1", size: 2},
-            {name: "place3", size: 3}
+            {name: "place3", size: 3, description: "djl;khdkjhckjhdkljshjldkj"}
         ])
     }
     post(){

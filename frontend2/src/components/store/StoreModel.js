@@ -1,4 +1,4 @@
-import ListItemModel from "./../ListItemModel"
+import ListItemModel from "./../list/ListItemModel"
 import StoreComponent from "./StoreComponent"
 export default class StoreModel extends ListItemModel{
     constructor(params) {
