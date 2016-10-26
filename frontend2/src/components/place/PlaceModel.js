@@ -1,9 +1,9 @@
 import ListItemModel from "./../list/ListItemModel"
 import PlaceComponent from "./PlaceComponent"
-export default class PlacesModel extends ListItemModel{
+export default class PlaceModel extends ListItemModel{
     constructor(params) {
         super(params)
-        this.ComponentClass = PlaceComponent
+        this.ComponentClass = params.ComponentClass || PlaceComponent
     }
     setDescription = (description) => {
         this.value.description = description

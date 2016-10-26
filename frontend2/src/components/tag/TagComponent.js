@@ -14,7 +14,9 @@ export default class TagComponent extends Component {
         super()
     }
 
-
+    getActions(){
+        return <CardActionsContent model={this.props.model}/>
+    }
     render() {
         let {model} = this.props
         let {name, size, state} = model.value
@@ -32,7 +34,7 @@ export default class TagComponent extends Component {
                     <div>{size} store(s)</div>
                 </div>
 
-                <CardActionsContent model={model}/>
+                {this.getActions()}
             </GridTile>
         }
         else return(

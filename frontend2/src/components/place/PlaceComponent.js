@@ -10,7 +10,9 @@ export default class PlaceComponent extends Component {
     constructor() {
         super()
     }
-
+    getActions(){
+        return <CardActionsContent model={this.props.model}/>
+    }
     render() {
         let {model} = this.props
         let {name, size, description, state} = model.value
@@ -29,7 +31,7 @@ export default class PlaceComponent extends Component {
                 {description}
             </CardText>
             <CardActions>
-                <CardActionsContent model={model}/>
+                {this.getActions()}
             </CardActions>
         </Card>
         else return(

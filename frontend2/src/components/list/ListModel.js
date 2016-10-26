@@ -2,12 +2,13 @@ import Model from "./../Model"
 import ListComponent from "./ListComponent"
 import AddItemModelWrapper from "./AddItemModelWrapper"
 export default class ListModel extends Model{
-    constructor({provider, ChildModel, ComponentClass=ListComponent}) {
+    constructor({provider, ChildModel, ComponentClass=ListComponent, addNewPrompt="Add New Item"}) {
         super()
         this.models = []
         this.provider = provider
         this.ChildModel = ChildModel
         this.ComponentClass = ComponentClass
+        this.addNewPrompt = addNewPrompt
         provider.get()
             .then(values=>{
                 this.models = values.map(value=>new this.ChildModel({value, parent: this}))

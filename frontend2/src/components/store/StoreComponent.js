@@ -6,6 +6,7 @@ import Component from "./../Component"
 import EditingItemComponent from "./../list/EditingItemComponent"
 import CardActionsContent from "./../list/CardActions"
 import StateIcon from "./../StateIcon"
+import styles from "./styles.sass"
 export default class StoreComponent extends Component {
     constructor() {
         super()
@@ -24,12 +25,23 @@ export default class StoreComponent extends Component {
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
-                <CardMedia
+                <CardText
                     expandable={true}
-                    overlay={<CardTitle title={description}/>}
                 >
-                    <img src={image} />
-                </CardMedia>
+                    <div className="displayFlex cols">
+                        <div>
+                            <div className="aroundImg">
+                                <img className="img" src={image}/>
+                            </div>
+                        </div>
+                        <div>
+                            {model.tagList.getView()}
+                        </div>
+                        <div>
+                            {model.placeModel.getView()}
+                        </div>
+                    </div>
+                </CardText>
                 <CardActions>
                     <CardActionsContent model={model}/>
                 </CardActions>

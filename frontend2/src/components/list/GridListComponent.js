@@ -18,7 +18,7 @@ export default class GridListComponent extends Component {
                 {model.models.map((m,i)=>m.getView({key:i}))}
             </GridList>
             <div className="displayFlex flexCenter width100">
-                <h1>Add New Item</h1>
+                <h1>{model.addNewPrompt}</h1>
             </div>
             {model.addItemModel.getView()}
         </div>
