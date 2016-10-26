@@ -2,12 +2,12 @@
 
 var path = require('path');
 var webpack = require('webpack');
-//var HtmlWebpackPlugin = require('html-webpack-plugin');
-var mainJsFileName = "frontend/app/main.js"
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var   mainJsFileName = "src/app/main.js"
 var plugins = [
-  //new webpack.optimize.OccurenceOrderPlugin(),
-  //new webpack.HotModuleReplacementPlugin(),
-  //new webpack.NoErrorsPlugin()
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin()
 ];
 
 var isProduction = process.env.NODE_ENV === "production"
@@ -24,7 +24,7 @@ module.exports = {
     path.join(__dirname, mainJsFileName)
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.join(__dirname, '/'),
     filename: '[name].js',
     publicPath: '/'
   },
@@ -40,7 +40,8 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["react", "es2015", "stage-0",
+        "presets": ["react", "es2015", "stage-0"
+        , "react-hmre",// comment this string in production
         ]
       }
     }, {
