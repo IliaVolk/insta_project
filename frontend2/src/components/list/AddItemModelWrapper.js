@@ -12,7 +12,7 @@ export default class AddItemModelWrapper extends Model{
         if (this.model) this.model.shouldComponentUpdate = true
 
         this.model = Object.assign(new this.ModelClass({value: {}, parent: this.parent}), this)
-        this.model.isEditing = true
+        this.model.setEditing()
     }
     confirm = () => {
         this.parent.add(this.model.value)

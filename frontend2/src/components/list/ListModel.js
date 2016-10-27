@@ -11,6 +11,7 @@ export default class ListModel extends Model{
         this.addNewPrompt = addNewPrompt
         provider.get()
             .then(values=>{
+                if (!values)return
                 this.models = values.map(value=>new this.ChildModel({value, parent: this}))
                 this.notifyUpdated()
             })
@@ -18,6 +19,7 @@ export default class ListModel extends Model{
             ModelClass: ChildModel,
             parent: this
         })
+        this.add = this.add.bind(this)
     }
     add(value){
         return this.provider.post(value)

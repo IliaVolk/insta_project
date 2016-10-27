@@ -7,6 +7,8 @@ import EditingItemComponent from "./../list/EditingItemComponent"
 import CardActionsContent from "./../list/CardActions"
 import StateIcon from "./../StateIcon"
 import styles from "./styles.sass"
+import H3 from "./H3MidTitle"
+import Divider from "material-ui/Divider"
 export default class StoreComponent extends Component {
     constructor() {
         super()
@@ -30,15 +32,22 @@ export default class StoreComponent extends Component {
                 >
                     <div className="displayFlex cols">
                         <div>
-                            <div className="aroundImg">
-                                <img className="img" src={image}/>
+                            {description}
+                            <Divider/>
+                            <div className="width100 displayFlex flexCenter">
+                                <div className="aroundImg">
+                                    <img className="img" src={image}/>
+                                </div>
                             </div>
+
                         </div>
-                        <div>
-                            {model.tagList.getView()}
-                        </div>
+                        <H3>Place</H3>
                         <div>
                             {model.placeModel.getView()}
+                        </div>
+                        <H3>Tags</H3>
+                        <div>
+                            {model.tagList.getView()}
                         </div>
                     </div>
                 </CardText>
@@ -57,7 +66,21 @@ export default class StoreComponent extends Component {
                         {label: "Name", value: name, setter: setName},
                         {label: "Description", value: description, setter: setDescription},
                         {label: "Url", value: url, setter: setUrl}
-                    ]}/>
+                    ]}>
+                <div className="displayFlex cols">
+                    <H3>Define Place</H3>
+                    <div>
+                        {model.placeSelector.getView()}
+                        {model.placeModel.getView()}
+                    </div>
+                    <H3>Add tags</H3>
+                    <div>
+                        {model.tagSelector.getView()}
+                        {model.tagList.getView()}
+                    </div>
+
+                </div>
+                </EditingItemComponent>
                 </div>)
     }
 }

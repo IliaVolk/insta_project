@@ -23,7 +23,7 @@ export default class PlaceComponent extends Component {
             <CardHeader
                 avatar={<StateIcon state={state}/>}
                 title={<div className="font150 marginLeft">{name}</div>}
-                subtitle={<div className="marginLeft">{size} store(s)</div>}
+                subtitle={size?<div className="marginLeft">{size} store(s)</div>:""}
                 actAsExpander={true}
                 showExpandableButton={true}
             />

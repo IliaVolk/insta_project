@@ -8,6 +8,7 @@ export default props=><Card>
         <EditingFieldsComponent
             image={props.image}
             values={props.values}/>
+        {props.children}
     </CardText>
     <CardActions>
         <EditingActions

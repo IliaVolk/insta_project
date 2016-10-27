@@ -10,7 +10,7 @@ var getId = (function(){
         return "criteria-selector-id"+ id++
     }
 })()
-export default class CriteriaSelector extends React.Component {
+class CriteriaSelector extends React.Component {
     constructor() {
         super()
         this.id = getId()

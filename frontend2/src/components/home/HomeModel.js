@@ -1,5 +1,5 @@
 import Model from "./../Model"
-import CriteriaSelector from "./criteriaSelector/CriteriaSelectorModel"
+import CriteriaSelectorModel from "./criteriaSelector/CriteriaSelectorModel"
 import PlaceService from "./../place/PlaceService"
 import TagService from "./../tag/TagService"
 import StoreService from "./../store/StoreService"
@@ -8,11 +8,11 @@ export default class HomeModel extends Model{
     constructor() {
         super()
         this.ComponentClass = HomeComponent
-        this.placeSelector = new CriteriaSelector({
+        this.placeSelector = new CriteriaSelectorModel({
             title: "Select tag:",
             provider: PlaceService
         })
-        this.tagSelector = new CriteriaSelector({
+        this.tagSelector = new CriteriaSelectorModel({
             title: "Select place:",
             provider: TagService
         })

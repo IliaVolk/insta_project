@@ -31,7 +31,7 @@ export default class TagComponent extends Component {
                 <div className="displayFlex flexBetween">
                     <StateIcon state={state}/>
                     <h2>{name}</h2>
-                    <div>{size} store(s)</div>
+                    {size?<div>{size} store(s)</div>:<div></div>}
                 </div>
 
                 {this.getActions()}

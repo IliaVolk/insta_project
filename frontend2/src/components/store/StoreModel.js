@@ -6,9 +6,15 @@ import PlaceStoreComponent from "./../place/PlaceStoreComponent"
 import TagStoreProvider from "./../tag/TagStoreProvider"
 import TagStoreModel from "./../tag/TagStoreModel"
 import GridListComponent from "./../list/GridListComponent"
+import PlaceService from "./../place/PlaceService"
+import TagService from "./../tag/TagService"
+import CriteriaSelectorModel from "./../home/criteriaSelector/CriteriaSelectorModel"
+
 export default class StoreModel extends ListItemModel{
     constructor(params) {
         super(params)
+        this.value.place = this.value.place || {}
+        this.value.tags = this.value.tags || []
         this.ComponentClass = StoreComponent
         this.placeModel = new PlaceModel({
             value: params.value.place,
@@ -16,21 +22,41 @@ export default class StoreModel extends ListItemModel{
             ComponentClass: PlaceStoreComponent
         })
         this.tagList = new ListModel({
-            provider: new TagStoreProvider(this.value),
+            provider: new TagStoreProvider(this),
             ChildModel: TagStoreModel,
             ComponentClass: GridListComponent,
-            addNewPrompt: "Add Tag"
+            addNewPrompt: ""
         })
+        this.placeSelector = new CriteriaSelectorModel({
+            title: "Select place:",
+            provider: PlaceService,
+            onSelect: this.placeModel.setValue,
+            withCloud: false
+        })
+        this.tagSelector = new CriteriaSelectorModel({
+            title: "Select tag:",
+            provider: TagService,
+            onSelect: this.tagList.add,
+            withCloud: false
+        })
+        this.setImage = this.setImage.bind(this)
+        this.setDescription = this.setDescription.bind(this)
+        this.setUrl = this.setUrl.bind(this)
     }
-    setImage = (image) => {
+    setEditing(){
+        this.placeModel.setEditing()
+        this.tagList.models.forEach(m=>m.setEditing())
+        super.setEditing()
+    }
+    setImage(image){
         this.value.image = image
         this.notifyUpdated()
     }
-    setUrl = (url) => {
+    setUrl(url){
         this.value.url = url
         this.notifyUpdated()
     }
-    setDescription = (description) => {
+    setDescription(description){
         this.value.description = description
         this.notifyUpdated()
     }

@@ -4,36 +4,48 @@ export default class ListItemModel extends Model{
         super()
         this.value = value
         this.parent = parent
+        this.accept = this.accept.bind(this)
+        this.dismiss = this.dismiss.bind(this)
+        this.remove = this.remove.bind(this)
+        this.setEditing = this.setEditing.bind(this)
+        this.confirm = this.confirm.bind(this)
+        this.cancel = this.cancel.bind(this)
+        this.setName = this.setName.bind(this)
+        this.setValue = this.setValue.bind(this)
     }
-    accept = ()=>{
+    setValue(value){
+        this.value = value
+        this.confirm()
+    }
+    accept(){
         this.value.state = "accepted"
         this.isEditing = false
         this.notifyUpdated()
     }
-    dismiss = () =>{
+    dismiss(){
         this.value.state = "dismissed"
         this.isEditing = false
         this.notifyUpdated()
     }
-    remove = () => {
+    remove(){
         this.parent.remove(this)
     }
-    setEditing = () => {
+    setEditing(){
         this.isEditing = true
         this.savedValue = Object.assign({}, this.value)
         this.notifyUpdated()
     }
-    confirm = () => {
+    confirm(){
         this.isEditing = false
         this.parent.update(this)
             .then(this.notifyUpdated())
     }
-    cancel = () => {
+    cancel(){
         this.isEditing = false
         this.value = this.savedValue
         this.notifyUpdated()
     }
-    setName = (name) => {
+    setName(name){
         this.value.name = name
         this.notifyUpdated()
     }

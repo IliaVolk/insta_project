@@ -1,6 +1,7 @@
 export default class TagStoreProvider {
-    constructor(store) {
-        this.tags = store.tags
+    constructor(storeModel) {
+        this.tags = storeModel.value.tags
+        this.model = storeModel
     }
     get(){
         return Promise.resolve(this.tags)

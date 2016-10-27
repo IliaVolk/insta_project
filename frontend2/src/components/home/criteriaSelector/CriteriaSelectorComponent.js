@@ -23,8 +23,8 @@ export default class CriteriaSelectorComponent extends Component {
     }
     cloud(){
         let {model, width} = this.props,
-            {values, value} = model
-        if (!values.length)return
+            {values, value, withCloud} = model
+        if (!values.length || !withCloud)return
         this._cloud = new Cloud(values, model.setValue, "#"+this.id, width)
     }
     valueToDataSource(v){
