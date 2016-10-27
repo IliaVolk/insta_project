@@ -7,8 +7,8 @@ var getId = (function(){
     }
 })()
 export default props=>{
-    return <div className="displayFlex width100" ><div className="displayFlex cols flexCenter" style={{width: "70%"}}>
-        {props.values.map((value, i)=><div className="width100"><TextField
+    return <div className="displayFlex width100 flexCenter" ><div className="displayFlex cols flexCenter" style={{width: "70%"}}>
+        {props.values.map((value, i)=><div className="width100 displayFlex flexCenter"><TextField
             key={i}
             id={getId()}
             floatingLabelText={value.label}
