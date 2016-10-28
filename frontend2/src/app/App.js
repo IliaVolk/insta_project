@@ -24,6 +24,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
+import AuthComponent from "./AuthComponent"
 export default class App extends React.Component {
 
     constructor(props) {
@@ -41,7 +42,8 @@ export default class App extends React.Component {
             <div>
                 <AppBar
                     title={<Link to="/home"><span>Insta App</span></Link>}
-                    iconElementRight={<div>
+                    iconElementRight={<div className="color-alt">
+                    <AuthComponent/>
                     <Link to="/user"><FlatButton label="Offer Stuff"/></Link>
                     <Link to="/admin"><FlatButton label="Admin" /></Link></div>}
                 />

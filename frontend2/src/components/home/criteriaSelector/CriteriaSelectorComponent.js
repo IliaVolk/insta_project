@@ -21,12 +21,6 @@ export default class CriteriaSelectorComponent extends Component {
     static get propTypes() {
         return {}
     }
-    cloud(){
-        let {model, width} = this.props,
-            {values, value, withCloud} = model
-        if (!values.length || !withCloud)return
-        this._cloud = new Cloud(values, model.setValue, "#"+this.id, width)
-    }
     valueToDataSource(v){
         if (!v.name) return {
             text: "",
@@ -40,21 +34,15 @@ export default class CriteriaSelectorComponent extends Component {
     setValue(value, index){
         let {model} = this.props
         if (index < 0){
-            return model.setValue(value)
+            return
         }
         value = value.value
         model.setValue(value)
     }
-    componentDidMount(){
-        this.cloud()
-        super.componentDidMount()
-    }
+
     render() {
         let {model} = this.props
-        let {title, values, value} = model
-        if (!this._cloud)
-            this.cloud()
-        this._cloud && this._cloud.setCurrent(value)
+        let {title, values, value, isOpened} = model
         let dataSourceConfig = {
                 text: "text",
                 value: "value"
@@ -66,11 +54,12 @@ export default class CriteriaSelectorComponent extends Component {
                     <h2 className="title-padding">{title}  </h2>
                     <AutoComplete
                         hintText="Type..."
+                        open={isOpened}
                         openOnFocus={true}
                         filter={(searchText, key)=>{
                                 return !searchText || AutoComplete.fuzzyFilter(searchText, key)
                             }}
-                        maxSearchResults={3}
+                        maxSearchResults={5}
                         dataSource={dataSource}
                         dataSourceConfig={dataSourceConfig}
                         onNewRequest={this.setValue}
@@ -79,8 +68,6 @@ export default class CriteriaSelectorComponent extends Component {
                     <FlatButton label="Me Lucky" primary={true}
                                 onClick={()=>{model.setValue(values[Math.floor(Math.random()*values.length)])}}/>
                 </div>
-                <div id={this.id}></div>
-
             </div>
         )
     }

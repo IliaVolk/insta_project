@@ -7,7 +7,7 @@ import EditingActions from "./../list/EditingActions"
 import TextField from 'material-ui/TextField';
 import StateIcon from "./../StateIcon"
 const tileStyle = {
-    boxShadow: "0 0 1em black"
+    boxShadow: "0 0 2px 2px #eeeeee"
 }
 export default class TagComponent extends Component {
     constructor() {

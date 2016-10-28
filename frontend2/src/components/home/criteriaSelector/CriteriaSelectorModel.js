@@ -1,14 +1,14 @@
 import Model from "./../../Model"
 import CriteriaSelectorComponent from "./CriteriaSelectorComponent"
 export default class CriteriaSelectorModel extends Model{
-    constructor({title, value, provider, withCloud=true, onSelect=()=>{}}) {
+    constructor({title, value, provider, onSelect=()=>{}}) {
         super()
         this.ComponentClass = CriteriaSelectorComponent
         this.title = title
-        this.value = value || {}
         this.values = []
-        this.withCloud = withCloud
+        this.value = value || {}
         this.onSelect = onSelect
+        this.isOpened = false
         provider.get()
             .then((values)=>{
                 this.values = values
@@ -18,8 +18,7 @@ export default class CriteriaSelectorModel extends Model{
     }
     setValue(value){
         this.value = value
-        this.notifyUpdated()
         this.onSelect(value)
+        this.notifyUpdated()
     }
-
 }

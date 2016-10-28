@@ -10,7 +10,7 @@ export default class GridListComponent extends Component {
 
     render() {
         let {model} = this.props
-        return <div className="list-container">
+        return <div className="small-container">
             <GridList
                 cellHeight={150}
                 cols={2}

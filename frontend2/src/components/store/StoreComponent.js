@@ -66,21 +66,21 @@ export default class StoreComponent extends Component {
                         {label: "Name", value: name, setter: setName},
                         {label: "Description", value: description, setter: setDescription},
                         {label: "Url", value: url, setter: setUrl}
-                    ]}>
-                <div className="displayFlex cols">
-                    <H3>Define Place</H3>
-                    <div>
-                        {model.placeSelector.getView()}
-                        {model.placeModel.getView()}
-                    </div>
-                    <H3>Add tags</H3>
-                    <div>
-                        {model.tagSelector.getView()}
-                        {model.tagList.getView()}
-                    </div>
+                    ]}
+                    _children={[{
+                        header: "Places",
+                        content: <div>
+                            {model.placeSelector.getView()}
+                            {model.placeModel.getView()}
+                        </div>},{
+                        header: "Tags",
+                        content:<div>
+                            {model.tagSelector.getView()}
+                            {model.tagList.getView()}
+                    </div>}
+                    ]}
 
-                </div>
-                </EditingItemComponent>
+                />
                 </div>)
     }
 }

@@ -8,7 +8,7 @@ export default class ListComponent extends Component {
 
     render() {
         let {model} = this.props
-        return <div className="list-container">
+        return <div className="small-container">
             {model.models.map((m,i)=>m.getView({key:i}))}
             <div className="displayFlex flexCenter width100">
                 <h1>{model.addNewPrompt}</h1>

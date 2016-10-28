@@ -14,12 +14,16 @@ export default class Cloud{
             this.handleChange.call(found, this)
         }
     }
-    constructor(json, notifyChanged, containerSelector, width=+d3.select("body").style("width").slice(0, -2), height=400){
+    constructor({json, notifyAdded, containerSelector,
+                width=+d3.select("body").style("width").slice(0, -2),
+                height=400, multiSelect=false, notifyRemoved}){
+        this.multiSelect = multiSelect
         this.selected = {}
         this.onClick = this.getOnClick();
         this.width = width
         this.height = height
-        this.notifyChanged = notifyChanged
+        this.notifyAdded = notifyAdded
+        this.notifyRemoved = notifyRemoved
         var bleed = 10,
             botOffset = 80,
             dw = Math.min(0.9,(height)/width),
@@ -63,67 +67,81 @@ export default class Cloud{
             .attr("dy", ".35em");
         node.on("click", this.onClick)
         this.node = node;
+        this.r = 30
+        this.duration = 1000
     }
-    handleChange(self){
-        var newSelectedObject = d3.select(this);
-        var r = 30,
-            duration = 1000
-        if (self.locked){
-            self.nextSelected = this
-            clearTimeout(self.unlockTimeout)
-            self.unlockTimeout = setTimeout(()=>{
-                self.locked = false
-                self.onClick.call(self.nextSelected, self)
-                self.locked = false
-                console.log("locked false")
-            }, duration)
-            return
-        }
-        self.locked = true;
-
-        if (self.selected.object){
-            if (newSelectedObject[0][0].innerHTML == self.selected.object[0][0].innerHTML){
-                return
-            }
-            self.selected.object
-                .transition()
-                .duration(duration)
-                .attr("transform", self.selected.transformBack)
-                .select("ellipse")
-                //.attr("transform", "scale("+(dw)+",1)")
-                .attr("rx", self.selected.rBack)
-                .attr("ry", self.selected.rBack)
-                .attr("r", self.selected.rBack)
-            self.selected.object
-                .select("text")
-                .transition()
-                .duration(duration)
-                .style("font-size", self.fontSize)
-        }
-        self.selected.object = newSelectedObject
+    moveBack(self){
+        self.selected.object
+            .transition()
+            .duration(self.duration)
+            .attr("transform", self.selected.transformBack)
+            .select("ellipse")
+            //.attr("transform", "scale("+(dw)+",1)")
+            .attr("rx", self.selected.rBack)
+            .attr("ry", self.selected.rBack)
+            .attr("r", self.selected.rBack)
+        self.selected.object
+            .select("text")
+            .transition()
+            .duration(self.duration)
+            .style("font-size", self.fontSize)
+    }
+    modeForward(self){
         self.selected.transformBack = self.selected.object.attr("transform")
         self.selected.rBack = +self.selected.object.select("ellipse").attr("rx")
         self.selected.object
             .transition()
-            .duration(duration)
-            .attr("transform", "translate(" + (self.width/2) + "," + (self.height-r) + ")")
-            .select("ellipse").attr("rx", self.width).attr("ry", r)
+            .duration(self.duration)
+            .attr("transform", "translate(" + (self.width/2) + "," + (self.height-self.r) + ")")
+            .select("ellipse").attr("rx", self.width).attr("ry", self.r)
         var data = {}
         self.selected.object
             .select("text")
             .transition()
-            .duration(duration)
+            .duration(self.duration)
             .style("font-size", function(d){data = d;return 24})
+        return data
 
+    }
+    handleChange(self){
+        console.log("handle")
+        var newSelectedObject = d3.select(this);
+        if (self.locked){
+            self.nextSelected = this
+            return
+        }else{
+            self.unlockTimeout = setTimeout(()=>{
+                self.locked = false
+                self.onClick.call(self.nextSelected, self)
+                self.locked = false
+            }, self.duration)
+        }
+        self.locked = true;
+        if (self.selected.object) {
+            self.moveBack(self)
+            if (newSelectedObject[0][0].innerHTML == self.selected.object[0][0].innerHTML) {
+                let data = {}
+                self.selected.object
+                    .select("text")
+                    .each(d=>data = d)
+                self.notifyRemoved(data)
+                self.selected = {}
+                return null
+            }
+        }
+        self.selected.object = newSelectedObject
+        let data = self.modeForward(self)
 
         return data
     }
     getOnClick(){
         var self = this;
         return function (){
+            if (!d3.event)return
+            d3.event.stopPropagation()
             var data = self.handleChange.call(this, self)
             if (!data)return
-            self.notifyChanged({
+            self.notifyAdded({
                 name: data.name,
                 size: data.size
             })
