@@ -5,68 +5,51 @@ import FlatButton from 'material-ui/FlatButton';
 import AutoComplete from 'material-ui/AutoComplete';
 import MenuItem from 'material-ui/MenuItem';
 import Component from "./../../Component"
+import TextField from 'material-ui/TextField';
+import styles from "./styles.sass"
 var getId = (function(){
     var id = 0
     return function (){
         return "criteria-selector-id"+ id++
     }
 })()
+var i = 0
 export default class CriteriaSelectorComponent extends Component {
     constructor() {
         super()
         this.id = getId()
-        this.setValue = this.setValue.bind(this)
     }
 
     static get propTypes() {
         return {}
     }
-    valueToDataSource(v){
-        if (!v.name) return {
-            text: "",
-            value: v
-        }
-        return ({
-            text: v.name,
-            value: v
-        })
-    }
-    setValue(value, index){
-        let {model} = this.props
-        if (index < 0){
-            return
-        }
-        value = value.value
-        model.setValue(value)
-    }
+
 
     render() {
         let {model} = this.props
-        let {title, values, value, isOpened} = model
-        let dataSourceConfig = {
-                text: "text",
-                value: "value"
-            },
-            dataSource = values.map(this.valueToDataSource)
+        let {title, values, value, isOpened, setValue, selectValue, isMultiple,
+            showTips, hideTips, toggleTips, setFocusRef, canHide, cantHide} = model
         return (
             <div>
                 <div className="displayFlex flexCenter">
                     <h2 className="title-padding">{title}  </h2>
-                    <AutoComplete
-                        hintText="Type..."
-                        open={isOpened}
-                        openOnFocus={true}
-                        filter={(searchText, key)=>{
-                                return !searchText || AutoComplete.fuzzyFilter(searchText, key)
-                            }}
-                        maxSearchResults={5}
-                        dataSource={dataSource}
-                        dataSourceConfig={dataSourceConfig}
-                        onNewRequest={this.setValue}
-                        searchText={this.valueToDataSource(value).text}
-                    />
+                    <TextField
+                        ref={setFocusRef}
+                        id={this.id}
+                        value={value}
+                        onChange={e=>setValue(e.target.value)}
+                        onFocus={showTips}
+                        onBlur={hideTips}
+                        onTouchTap={toggleTips}/>
                     <FlatButton label="Me Lucky" primary={true}
-                                onClick={()=>{model.setValue(values[Math.floor(Math.random()*values.length)])}}/>
+                                onClick={()=>{selectValue(values[Math.floor(Math.random()*values.length)])}}/>
+                </div>
+
+                <div className={(isOpened?"positionAbsolute":"displayNone")+" tips"}
+                     onMouseEnter={cantHide}
+                     onMouseLeave={canHide}
+                     >
+                    {values.map(v=><FlatButton label={`${v.name} (${v.size})`} onTouchTap={e=>selectValue(v)}/>)}
                 </div>
             </div>
         )

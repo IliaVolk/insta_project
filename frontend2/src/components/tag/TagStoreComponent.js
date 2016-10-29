@@ -7,7 +7,7 @@ export default class TagStoreComponent extends TagComponent {
         super()
     }
     getActions(){
-        return <div>
+        return <div className="displayFlex flexCenter">
             <FlatButton label="Edit" primary={true} onClick={this.props.model.setEditing}/>
             <FlatButton label="Remove" secondary={true} onClick={this.props.model.remove}/>
         </div>

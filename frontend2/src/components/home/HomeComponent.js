@@ -30,30 +30,27 @@ class HomeComponent extends Component {
 
     render() {
         let {model} = this.props
-        let {selectedPlace, stores, selectedTags, removeTag} = model
-        return (<div className="displayFlex cols flexCenter">
-                <div className="displayFlex width100">
-                    <div className="width50">
+        let {selectedPlace, stores, selectedTags, removeTag, clearTags} = model
+        return (<div className="displayFlex cols flexCenter width100">
+                <div className="displayFlex width100 flexCenter cols">
                         <div className="displayFlex flexWrap flexCenter marginTop">
                             {selectedTags.map(tag=><Chip
                                 key={tag.name}
                                 className="margin"
-                                onRequestDelete={()=>removeTag(tag)}
-                            >
+                                onRequestDelete={()=>removeTag(tag)}>
                                 {tag.name}
                             </Chip>)}
+
                         </div>
-                        {model.tagSelector.getView()}
+                    <div>
+                        {selectedTags.length?<RaisedButton label="Clear" onClick={clearTags}/>:""}
                     </div>
-                    <div className="width50 marginTop">
-                        {model.placeSelector.getView()}
-                    </div>
+                            {model.tagSelector.getView()}
+
+
+
                 </div>
             <div className="small-container displayFlex flexCenter cols">
-            <TextField
-                    floatingLabelText="Tags..."
-                    fullWidth={true}
-                />
                 <RaisedButton onClick={model.goSearch} label="Search" primary={true} fullWidth={true} />
             </div>
             <div style={styles.root}>

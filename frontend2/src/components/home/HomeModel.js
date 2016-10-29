@@ -13,12 +13,17 @@ export default class HomeModel extends Model{
         this.ComponentClass = HomeComponent
         this.placeSelector = new CriteriaSelectorModel({
             title: "Select place:",
-            provider: PlaceService
+            provider: PlaceService,
+            isMultiple:false,
+            onSelect:this.setPlace,
+            getSelected: ()=>[this.selectedPlace||{}]
         })
         this.tagSelector = new CriteriaSelectorModel({
             title: "Select tag:",
             provider: TagService,
-            onSelect:this.addTag
+            isMultiple: true,
+            onSelect:this.addTag,
+            getSelected: ()=>this.selectedTags
         })
         this.storeService = StoreService
         this.stores = []
@@ -29,6 +34,7 @@ export default class HomeModel extends Model{
                 this.notifyUpdated()
             })
         this.goSearch = this.goSearch.bind(this)
+        this.clearTags = this.clearTags.bind(this)
 
     }
     goSearch(){
@@ -41,13 +47,19 @@ export default class HomeModel extends Model{
         }
         this.selectedTags.push(tag)
         this.notifyUpdated()
+        return this.selectedTags
     }
     setPlace(place){
         this.selectedPlace = place
         this.notifyUpdated()
+        return [place]
     }
     removeTag(tag){
         this.selectedTags = this.selectedTags.filter(t=>t.name !== tag.name)
+        this.notifyUpdated()
+    }
+    clearTags(){
+        this.selectedTags = []
         this.notifyUpdated()
     }
 }

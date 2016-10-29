@@ -31,13 +31,15 @@ export default class StoreModel extends ListItemModel{
             title: "Select place:",
             provider: PlaceService,
             onSelect: this.placeModel.setValue,
-            withCloud: false
+            isMultiple: false,
+            getSelected: ()=>[this.placeModel.value]
         })
         this.tagSelector = new CriteriaSelectorModel({
             title: "Select tag:",
             provider: TagService,
             onSelect: this.tagList.add,
-            withCloud: false
+            isMultiple: true,
+            getSelected: ()=>this.tagList.models.map(m=>m.value)
         })
         this.setImage = this.setImage.bind(this)
         this.setDescription = this.setDescription.bind(this)

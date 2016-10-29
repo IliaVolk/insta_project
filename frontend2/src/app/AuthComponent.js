@@ -23,7 +23,7 @@ export default class AuthComponent extends React.Component {
     render() {
         var credentials = window["instagram-auth-credentials"]
         return <span>
-            {credentials?<span>Hello, {credentials.user.full_name}</span>:
+            {credentials&&credentials.user?<span>Hello, {credentials.user.full_name}</span>:
                 <a><FlatButton onClick={this.openAuthWindow} label="Authenticate"/></a>}
             <input type="hidden" id="instagram-auth-credentials" onClick={this.auth}/>
         </span>
